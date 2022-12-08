@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "7090599564",
+    "project_id": "haunder-a479c",
+    "storage_bucket": "haunder-a479c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:7090599564:android:b1dd201b334611685dada9",
+        "android_client_info": {
+          "package_name": "host.exp.exponent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "7090599564-hjn3kg83k4ufp7r2qqcjbukq7jfk0qml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgY3mQz-F2fTCJw2KXrkmc6j6RYQup-PM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "7090599564-hjn3kg83k4ufp7r2qqcjbukq7jfk0qml.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "7090599564-qss90gjjkso3ihimch0b6uktedeg87ll.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

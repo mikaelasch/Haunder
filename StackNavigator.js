@@ -4,22 +4,27 @@ import HomeScreen from './components/HomeScreen'
 import ChatScreen from './components/ChatScreen'
 import LoginScreen from './components/LoginScreen'
 import ProfileScreen from './components/ProfileScreen'
-import useAuth from './components/useAuth'
-import CreateUser from './components/CreateUser'
+import { auth } from './firebaseConfig'
+import UserScreen from './components/UserScreen'
+import { onAuthStateChanged } from 'firebase/auth';
+import { useState } from 'react'
 
 const Stack = createNativeStackNavigator() 
 
 export default function StackNavigator({navigation}){
-const user=true
-    {/*const {user} = useAuth()*/}
+
+    const [isLoggedIn, setLoggedIn] = useState(false);
+
+    onAuthStateChanged(auth, (user) => setLoggedIn(user != null));
+
     return(
         <Stack.Navigator>
-            {user ? (
+            {isLoggedIn ? (
                 <>
             <Stack.Screen name="Home" component={HomeScreen}/>
             <Stack.Screen name="Chat" component={ChatScreen}/>
             <Stack.Screen name="Profile" component={ProfileScreen}/>
-            <Stack.Screen name="Create user" component={CreateUser}/>
+            <Stack.Screen name="User" component={UserScreen}/>
             </>
     ) : (
             <Stack.Screen name="Login" component={LoginScreen}/>

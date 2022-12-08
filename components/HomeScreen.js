@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { View, Text, Button } from 'react-native';
-import { fs } from './firebase-config'
+import { Image } from '@rneui/base';
+import { fs } from '../firebaseConfig'
 import { collection, query, onSnapshot } from 'firebase/firestore';
-import { ListItem } from '@rneui/themed'
 
 export default function HomeScreen({ navigation }) {
 
@@ -27,11 +27,16 @@ export default function HomeScreen({ navigation }) {
         <View style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Here you can find friends</Text>
             {
-                profiles.map((profile, i) => (
-                <Button key={profile.id} title={profile.name} onPress={() => navigation.navigate('Profile', { profileId: profile.id })}></Button>
-                ))
+                profiles.map((profile, i) => {
+                    console.log(profile);
+                    return (<View key={i}>
+                        <Image source={{ uri: profile.imgUrl }}></Image>
+                        <Button key={profile.userId} title={profile.name} onPress={() => navigation.navigate('Profile', { profileId: profile.id })}></Button>
+                        </View>)
+                    
+            })
             }
-            <Button title="Chat" onPress={()=> navigation.navigate('Chat')}></Button>
-            <Button title="Create User" onPress={()=> navigation.navigate('Create user')}></Button>
+            
+            <Button title="User" onPress={()=> navigation.navigate('User')}></Button>
         </View> 
          );}
