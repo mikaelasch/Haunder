@@ -49,9 +49,9 @@ export default function LoginScreen({ navigation }) {
   }
 
   async function createUser(user) {
-    console.log(user);
-    const profileRef = doc(collection(fs, "profiles"));
-    console.log(profileRef);
+    console.log(user)
+    const profileRef = doc(collection(fs, "profiles"))
+    console.log(profileRef)
     await setDoc(doc(fs, "users", user.id), {
       ...user,
       id: user.id,
@@ -100,7 +100,7 @@ export default function LoginScreen({ navigation }) {
               </Dialog>
          </ImageBackground> 
         </View> 
-         );}
+         )}
 
          const styles = StyleSheet.create({
             container: {

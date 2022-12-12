@@ -50,8 +50,8 @@ export default function ChatScreen({ navigation, route }) {
         </View>
         <View>
             
-            <Input onChangeText={(value) => setMessage(value)} placeholder='Viesti'></Input>
-            <Button title="Lähetä" onPress={() => submit()}></Button>
+            <Input onChangeText={(value) => setMessage(value)} placeholder='Message'></Input>
+            <Button title="Send" onPress={() => submit()}></Button>
         </View>
         </>
     );

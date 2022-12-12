@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import { useState, useEffect, useRef } from 'react';
-import { Input, Button, Text } from '@rneui/themed';
+import { Input, Button, Text,  } from '@rneui/themed';
 import { getDoc, doc, updateDoc } from 'firebase/firestore'
 import * as ImagePicker from 'expo-image-picker'
 import { Alert, Image } from 'react-native';
@@ -8,14 +8,17 @@ import { signOut } from 'firebase/auth';
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { auth, storage, fs } from '../firebaseConfig';
 
+
 export default function UserScreen({ navigation, route}) {
 
     const [image, setImage] = useState(undefined);
     const [profile, setProfile] = useState({
-        id: "",
+        id: '',
         name:'',
         age:'',
+        gender:'',
         description:'',
+        race:'',
         imgPath: ''
     })
     useEffect(() => {
@@ -51,7 +54,7 @@ export default function UserScreen({ navigation, route}) {
             setImage(url);
             setProfile({...profile, imgPath, imgUrl: url });
           } else {
-            alert('Image upload failed')
+            Alert.alert('Image upload failed')
           }
     }
     
@@ -96,10 +99,10 @@ export default function UserScreen({ navigation, route}) {
     }
   
     return (
-        <View style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{flex:1, alignItems: 'center', justifyContent: 'center', backgroundColor:'white'}}>
         <Text h3> Your best friends information</Text>
         {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-        <Button title="Take Photo"onPress={pickImage} />
+        <Button type="clear" title="Take Photo"onPress={pickImage} />
        <Input
        value={profile?.name}
        placeholder='Your Best Friends name'
@@ -113,15 +116,27 @@ export default function UserScreen({ navigation, route}) {
        leftIcon={{ type: 'font-awesome', name: 'paw' }}
        />
        <Input
+       value={profile?.gender}
+       placeholder='Your Best Friends Gender'
+       onChangeText={(value) => setProfile({...profile, gender: value})}       
+       leftIcon={{ type: 'font-awesome', name: 'paw' }}
+       />
+       <Input
+       value={profile?.race}
+       placeholder='Your Best Friends Race'
+       onChangeText={(value) => setProfile({...profile, race: value})}       
+       leftIcon={{ type: 'font-awesome', name: 'paw' }}
+       />
+       <Input
        value={profile?.description}
        placeholder='Describe your pet'
        onChangeText={(value) => setProfile({...profile, description: value})}       
        leftIcon={{ type: 'font-awesome', name: 'paw' }}
        />
 
-            <Button title="Save" onPress={handleSave}></Button>
+            <Button title="Save" type="clear" onPress={handleSave}></Button>
             <></>
             <></>
-            <Button title="Logout" onPress={handleLogout}></Button>
+            <Button title="Logout" type="clear" onPress={handleLogout}></Button>
         </View> 
          )}
