@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { useState, useEffect, useRef } from 'react';
 import { Input, Button, Text } from '@rneui/themed';
-import { getDoc, doc, setDoc } from 'firebase/firestore'
+import { getDoc, doc, updateDoc } from 'firebase/firestore'
 import * as ImagePicker from 'expo-image-picker'
 import { Alert, Image } from 'react-native';
 import { signOut } from 'firebase/auth';
@@ -12,6 +12,7 @@ export default function UserScreen({ navigation, route}) {
 
     const [image, setImage] = useState(undefined);
     const [profile, setProfile] = useState({
+        id: "",
         name:'',
         age:'',
         description:'',
@@ -24,22 +25,14 @@ export default function UserScreen({ navigation, route}) {
 
     
     async function getProfile() {
-        const item = await getDoc(doc(fs, `profiles/${auth.currentUser.uid}`));
-        setProfile(item.data());
-        getImageFromPath(item.data().imgPath);
-    }
-
-    async function getImageFromPath(imgPath) {
-        if (!imgPath) return;
-        const url = await getDownloadURL(ref(storage, imgPath));
-        setImage(url);
+        const user = await getDoc(doc(fs, `users/${auth.currentUser.uid}`));
+        const fsProfile = await getDoc(doc(fs, `profiles/${user.data().profileId}`))
+        setProfile(fsProfile.data());
+        setImage(profile.imgUrl || "");
     }
 
     async function handleSave() {
-        await setDoc(doc(fs, "profiles", auth.currentUser.uid), {
-            ...profile,
-            userId: auth.currentUser.uid
-        })
+        await updateDoc(doc(fs, "profiles", profile.id), profile)
     }
 
     async function pickImage() {

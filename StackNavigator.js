@@ -17,11 +17,13 @@ export default function StackNavigator({navigation}){
 
     onAuthStateChanged(auth, (user) => setLoggedIn(user != null));
 
+    
+
     return(
         <Stack.Navigator>
             {isLoggedIn ? (
                 <>
-            <Stack.Screen name="Home" component={HomeScreen}/>
+            <Stack.Screen name="HAUNDER" component={HomeScreen}/>
             <Stack.Screen name="Chat" component={ChatScreen}/>
             <Stack.Screen name="Profile" component={ProfileScreen}/>
             <Stack.Screen name="User" component={UserScreen}/>
