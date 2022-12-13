@@ -1,4 +1,3 @@
-import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import HomeScreen from './components/HomeScreen'
 import ChatScreen from './components/ChatScreen'
@@ -23,13 +22,13 @@ export default function StackNavigator({navigation}){
         <Stack.Navigator>
             {isLoggedIn ? (
                 <>
-            <Stack.Screen name="HAUNDER" component={HomeScreen}/>
-            <Stack.Screen name="Chat" component={ChatScreen}/>
-            <Stack.Screen name="Profile" component={ProfileScreen}/>
-            <Stack.Screen name="User" component={UserScreen}/>
+            <Stack.Screen name="HAUNDER" component={HomeScreen} options={{ headerShown: false }}/>
+            <Stack.Screen name="Chat" component={ChatScreen} />
+            <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="User" component={UserScreen} options={{ headerShown: false }} />
             </>
     ) : (
-            <Stack.Screen name="Login" component={LoginScreen}/>
+            <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
         )}
           </Stack.Navigator>
     )

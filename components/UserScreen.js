@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import { useState, useEffect, useRef } from 'react';
-import { Input, Button, Text,  } from '@rneui/themed';
+import { Input, Button, Text, Header, Icon  } from '@rneui/themed';
 import { getDoc, doc, updateDoc } from 'firebase/firestore'
 import * as ImagePicker from 'expo-image-picker'
 import { Alert, Image } from 'react-native';
@@ -100,6 +100,20 @@ export default function UserScreen({ navigation, route}) {
   
     return (
         <View style={{flex:1, alignItems: 'center', justifyContent: 'center', backgroundColor:'white'}}>
+        <Header 
+          centerComponent={{ text: 'HAUNDER', style: { color: '#fff' } }}
+          containerStyle={{
+          backgroundColor: '#9CAF88',
+          justifyContent: 'space-around',
+         }}>
+        <Icon
+          raised
+          name='home'
+          type='font-awesome'
+          color='black'
+          onPress={() => navigation.navigate('HAUNDER')} /> 
+         
+        </Header>
         <Text h3> Your best friends information</Text>
         {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
         <Button type="clear" title="Take Photo"onPress={pickImage} />
